@@ -4,10 +4,12 @@ import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
-import rootReducer from './components/reducers/rootReducer';
+import rootReducer from './reducers/rootReducer';
 import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(rootReducer,{
+    auth: {authenticated: localStorage.getItem('token')}
+}, applyMiddleware(thunk));
 
 
 ReactDOM.render(

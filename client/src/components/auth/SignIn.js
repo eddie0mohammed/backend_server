@@ -5,10 +5,10 @@ import * as actionCreators from '../../actions/actionCreators';
 import {compose } from 'redux';
 import {withRouter} from 'react-router-dom';
 
-class SignUp extends Component {
+class SignIn extends Component {
 
     onSubmit = (formProps) => {
-        this.props.signUp(formProps, () => {
+        this.props.signIn(formProps, () => {
             this.props.history.push('/feature');
         });
     }
@@ -25,7 +25,7 @@ class SignUp extends Component {
                     <Field name="password" type="password" component="input" autoComplete="off"/>
                 </fieldset>
                 <div>{this.props.errorMessage}</div>
-                <button>Sign Up!</button>
+                <button>Sign In!</button>
 
                 
             </form>
@@ -40,14 +40,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (formProps, callback) => dispatch(actionCreators.signUp(formProps, callback)),
+        signIn: (formProps, callback) => dispatch(actionCreators.signIn(formProps, callback)),
     }
 }
 
 export default compose(
     connect(mapStateToProps, mapDispatchToProps),
-    reduxForm({form: 'signUp'}),
+    reduxForm({form: 'signIn'}),
     withRouter
 
 
-)(SignUp);
+)(SignIn);
